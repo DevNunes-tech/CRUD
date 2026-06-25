@@ -1,47 +1,71 @@
+import streamlit as st
 import crud_notas
 
-def menu():
-    while True:
-        print("\n--- SISTEMA DE NOTAS PIT ---")
-        print("1. Cadastrar Aluno")
-        print("2. Listar Alunos")
-        print("3. Atualizar Aluno")
-        print("4. Remover Aluno")
-        print("5. Sair")
-        
-        op = input("Escolha uma opção: ")
-        
-        if op == "1":
-            nome = input("Nome do aluno: ")
-            n1 = float(input("Nota 1: "))
-            n2 = float(input("Nota 2: "))
-            crud_notas.adicionar_aluno(nome, [n1, n2])
+st.title("📚 Sistema de Notas PIT")
 
-        elif op == "2":
-            crud_notas.listar_alunos()
+menu = st.sidebar.selectbox(
+    "Escolha uma opção",
+    ["Cadastrar", "Listar", "Atualizar", "Remover"]
+)
 
-        elif op == "3":
-            crud_notas.listar_alunos()
+# CADASTRAR
+if menu == "Cadastrar":
+    st.header("Cadastrar Aluno")
 
-            idx = int(input("Digite o ID do aluno a atualizar: "))
-            novo_nome = input("Novo nome: ")
+    nome = st.text_input("Nome do aluno")
+    n1 = st.number_input("Nota 1", min_value=0.0, max_value=10.0)
+    n2 = st.number_input("Nota 2", min_value=0.0, max_value=10.0)
 
-            n1 = float(input("Nova Nota 1: "))
-            n2 = float(input("Nova Nota 2: "))
+    if st.button("Cadastrar"):
+        crud_notas.adicionar_aluno(nome, [n1, n2])
+        st.success("Aluno cadastrado com sucesso!")
 
+# LISTAR
+elif menu == "Listar":
+    st.header("Lista de Alunos")
+
+    dados = crud_notas.carregar_dados()
+
+    if dados:
+        st.table(dados)
+    else:
+        st.warning("Nenhum aluno cadastrado.")
+
+# ATUALIZAR
+elif menu == "Atualizar":
+    st.header("Atualizar Aluno")
+
+    dados = crud_notas.carregar_dados()
+
+    if dados:
+        nomes = [f"{i} - {a['nome']}" for i, a in enumerate(dados)]
+
+        escolha = st.selectbox("Escolha o aluno", nomes)
+
+        idx = int(escolha.split(" - ")[0])
+
+        novo_nome = st.text_input("Novo nome")
+
+        n1 = st.number_input("Nova Nota 1", min_value=0.0, max_value=10.0)
+        n2 = st.number_input("Nova Nota 2", min_value=0.0, max_value=10.0)
+
+        if st.button("Atualizar"):
             crud_notas.atualizar_aluno(idx, novo_nome, [n1, n2])
+            st.success("Aluno atualizado!")
 
-        elif op == "4":
-            crud_notas.listar_alunos()
-            idx = int(input("Digite o ID do aluno a remover: "))
+# REMOVER
+elif menu == "Remover":
+    st.header("Remover Aluno")
+
+    dados = crud_notas.carregar_dados()
+
+    if dados:
+        nomes = [f"{i} - {a['nome']}" for i, a in enumerate(dados)]
+
+        escolha = st.selectbox("Escolha o aluno", nomes)
+
+        idx = int(escolha.split(" - ")[0])
+
+        if st.button("Remover"):
             crud_notas.excluir_aluno(idx)
-
-        elif op == "5":
-            print("Saindo do sistema...")
-            break
-
-        else:
-            print("Opção inválida!")
-
-if __name__ == "__main__":
-    menu()
+            st.success("Aluno removido!")
