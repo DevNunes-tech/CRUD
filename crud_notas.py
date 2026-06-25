@@ -30,6 +30,24 @@ def listar_alunos():
     for i, aluno in enumerate(dados):
         print(f"{i} | Nome: {aluno['nome']} | Notas: {aluno['notas']} | Média: {aluno['media']}")
 
+def atualizar_aluno(indice, novo_nome=None, novas_notas=None):
+    dados = carregar_dados()
+    if 0 <= indice < len(dados):
+        aluno = dados[indice]
+
+        if novo_nome:
+            aluno["nome"] = novo_nome
+
+        if novas_notas:
+            aluno["notas"] = novas_notas
+            aluno["media"] = round(sum(novas_notas) / len(novas_notas), 2)
+        
+        salvar_dados(dados)
+
+        print(f"{novo_nome} atualizado com sucesso.")
+    else:
+        print("Erro: Índice inválido.")
+
 def excluir_aluno(indice):
     dados = carregar_dados()
     if 0 <= indice < len(dados):
