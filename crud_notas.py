@@ -19,40 +19,34 @@ def adicionar_aluno(nome, notas):
     novo_aluno = {"nome": nome, "notas": notas, "media": round(media, 2)}
     dados.append(novo_aluno)
     salvar_dados(dados)
-    print(f"Sucesso: {nome} adicionado com média {novo_aluno['media']}.")
+    return True
 
 def listar_alunos():
-    dados = carregar_dados()
-    if not dados:
-        print("Nenhum aluno cadastrado.")
-        return
-    print("\n--- Lista de Alunos ---")
-    for i, aluno in enumerate(dados):
-        print(f"{i} | Nome: {aluno['nome']} | Notas: {aluno['notas']} | Média: {aluno['media']}")
+    return carregar_dados()
 
 def atualizar_aluno(indice, novo_nome=None, novas_notas=None):
     dados = carregar_dados()
+
     if 0 <= indice < len(dados):
-        aluno = dados[indice]
 
         if novo_nome:
-            aluno["nome"] = novo_nome
+            dados[indice]["nome"] = novo_nome
 
         if novas_notas:
-            aluno["notas"] = novas_notas
-            aluno["media"] = round(sum(novas_notas) / len(novas_notas), 2)
+            dados[indice]["notas"] = novas_notas
+            dados[indice]["media"] = round(sum(novas_notas) / len(novas_notas), 2)
         
         salvar_dados(dados)
 
-        print(f"{novo_nome} atualizado com sucesso.")
-    else:
-        print("Erro: Índice inválido.")
+        return True
+    return False
 
 def excluir_aluno(indice):
     dados = carregar_dados()
+
     if 0 <= indice < len(dados):
-        removido = dados.pop(indice)
+        dados.pop(indice)
         salvar_dados(dados)
-        print(f"Aluno {removido['nome']} excluído com sucesso.")
-    else:
-        print("Erro: Índice inválido.")
+        
+        return True
+    return False
