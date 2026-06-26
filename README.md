@@ -1,80 +1,134 @@
 # Sistema de Gerenciamento de Notas PIT
 
-Projeto desenvolvido para a disciplina de **Algoritmos e Programação** do 1º período do curso de **Bacharelado em Inteligência Artificial** do **Piauí Instituto de Tecnologia (PIT)**.
+Projeto desenvolvido para a disciplina de **Algoritmos e Programacao** do 1º periodo do curso de **Bacharelado em Inteligencia Artificial** do **Piaui Instituto de Tecnologia (PIT)**.
 
-## Descrição do Projeto
+A disciplina e ministrada pela professora **Evelyn Karinne Macedo Mota Silva**.
 
-O sistema tem como objetivo realizar o gerenciamento acadêmico de alunos da faculdade PIT, permitindo o armazenamento permanente dos dados por meio de arquivos JSON.
+**E-mail da professora:** [evelyn.silva@pitpiaui.com](mailto:evelyn.silva@pitpiaui.com)
 
-O software implementa um CRUD completo (**Create, Read, Update e Delete**) utilizando listas de dicionários para armazenar informações dos alunos, aplicando os conceitos estudados durante a disciplina.
+## Descricao do Projeto
+
+O sistema realiza o gerenciamento de notas de alunos por meio de uma aplicacao web criada com **Streamlit**. A aplicacao permite cadastrar, listar, atualizar e remover alunos, mantendo os dados salvos em um arquivo JSON.
+
+O projeto implementa um CRUD completo (**Create, Read, Update e Delete**) usando listas de dicionarios em Python e persistencia local no arquivo `notas_alunos.json`.
 
 ## Funcionalidades
 
-* **Cadastrar Aluno:** adiciona um novo aluno ao sistema, registrando suas notas e calculando automaticamente a média.
-* **Listar Alunos:** exibe todos os alunos cadastrados juntamente com suas respectivas médias.
-* **Remover Aluno:** exclui registros do sistema por meio da seleção do índice correspondente.
-* **Persistência de Dados:** armazena todas as informações no arquivo `notas_alunos.json`, garantindo que os dados permaneçam disponíveis mesmo após o encerramento da aplicação.
+* **Cadastrar Aluno:** registra o nome do aluno, duas notas e calcula automaticamente a media.
+* **Listar Alunos:** exibe todos os alunos cadastrados com suas notas e medias.
+* **Atualizar Aluno:** permite alterar o nome e as notas de um aluno cadastrado.
+* **Remover Aluno:** exclui um aluno selecionado pelo usuario.
+* **Persistencia de Dados:** salva os registros no arquivo `notas_alunos.json`.
 
 ## Tecnologias Utilizadas
 
-* **Linguagem:** Python 3
-* **Biblioteca:** `json` (biblioteca nativa para serialização e persistência de dados)
+* **Python 3:** linguagem principal do projeto.
+* **Streamlit:** framework utilizado para criar a interface web.
+* **JSON:** formato usado para armazenar os dados dos alunos.
+* **Biblioteca `json`:** biblioteca nativa do Python usada para ler e salvar o arquivo JSON.
+
+## Como Executar o Projeto
+
+1. Instale as dependencias:
+
+```bash
+pip install -r requirements.txt
+```
+
+2. Execute a aplicacao:
+
+```bash
+streamlit run main.py
+```
+
+3. Abra no navegador o endereco exibido pelo Streamlit.
 
 ## Estrutura do Projeto
 
-O sistema foi organizado de forma modular para facilitar a manutenção e a reutilização do código:
+```text
+CRUD/
+├── main.py
+├── crud_notas.py
+├── requirements.txt
+├── .gitignore
+├── notas_alunos.json
+└── README.md
+```
 
 ### `main.py`
 
-Responsável pela interface com o usuário, exibição do menu principal e controle da navegação utilizando a estrutura `match...case`.
+Arquivo responsavel pela interface web em Streamlit. Ele exibe o menu lateral e as telas de cadastro, listagem, atualizacao e remocao de alunos.
 
 ### `crud_notas.py`
 
-Contém as funções responsáveis pela lógica de negócio, manipulação dos dados, leitura e gravação de arquivos JSON, além do tratamento de exceções utilizando `try...except`.
+Arquivo responsavel pela logica do CRUD. Ele contem as funcoes para carregar dados, salvar dados, adicionar aluno, listar alunos, atualizar aluno e excluir aluno.
 
-## Desafios Encontrados
+### `notas_alunos.json`
 
-Durante o desenvolvimento, um dos principais desafios foi garantir a integridade dos dados durante a exclusão de registros da lista de alunos. Também foi necessário tratar adequadamente a conversão de tipos de dados e lidar com situações em que o arquivo JSON ainda não existia, evitando falhas na execução do programa.
+Arquivo criado automaticamente para guardar os dados cadastrados. Ele nao precisa ser enviado para o GitHub, pois representa dados locais gerados durante o uso do sistema.
 
-## Uso de Inteligência Artificial
+## Uso de Inteligencia Artificial
 
-A Inteligência Artificial foi utilizada como ferramenta de apoio ao desenvolvimento do projeto, auxiliando em:
+A Inteligencia Artificial utilizada para transformar e documentar o projeto foi o **Codex, baseado no GPT-5, da OpenAI**.
 
-1. Estruturação da arquitetura modular do sistema, separando as responsabilidades entre os arquivos `main.py` e `crud_notas.py`.
-2. Implementação de boas práticas de programação, incluindo tratamento de erros com `try...except`.
-.
+A IA foi utilizada como apoio para adaptar o projeto para Streamlit, organizar a documentacao, preencher o `.gitignore`, criar o `requirements.txt` e melhorar as referencias do README.
+
+### Prompts Utilizados
+
+1. **Transformacao para Streamlit**
+
+```text
+Transforme este projeto Python de CRUD de notas para Streamlit, mantendo a logica existente e criando uma interface web para cadastrar, listar, atualizar e remover alunos.
+```
+
+2. **Atualizacao do README**
+
+```text
+Atualize o README seguindo as orientacoes da atividade, informando a IA utilizada e todos os prompts usados para transformar o projeto em Streamlit.
+```
+
+## Links do Projeto
+
+* **Repositorio no GitHub:** https://github.com/DevNunes-tech/CRUD
+* **Aplicacao no Streamlit:** [https://pitcrud.streamlit.app/](https://pitcrud.streamlit.app/)
 
 ## Equipe
 
-* Adler
-* Arthur
-* Mateus
+* **Adler Jose da Silva Oliveira** - [alunoadler@gmail.com](mailto:alunoadler@gmail.com)
+* **Arthur Daladier Beserra da Silva** - [rthurvxdala@gmail.com](mailto:rthurvxdala@gmail.com)
+* **Mateus Oliveira Nunes** - [mateusoliveiranunes2@gmail.com](mailto:mateusoliveiranunes2@gmail.com)
+
 
 ---
 
-# Referências
+# Referencias
 
 ## Materiais da Disciplina (PIT)
 
-* Fundamentos de Lógica e Python
-* Estruturas Condicionais
-* Estruturas de Repetição
-* Manipulação de Listas
-* Funções e Modularização
-* Uso de Bibliotecas
-* Dicionários e Listas de Dicionários
-* Persistência de Arquivos e JSON
+* Fundamentos de Logica e Python.
+* Estruturas Condicionais.
+* Estruturas de Repeticao.
+* Manipulacao de Listas.
+* Funcoes e Modularizacao.
+* Uso de Bibliotecas.
+* Dicionarios e Listas de Dicionarios.
+* Persistencia de Arquivos e JSON.
 
-## Fontes Técnicas de Consulta
+## Python e JSON
 
-* CRUD em Python com JSON. Disponível em: [https://github.com/VILHALVA/CRUD-PYTHON-EM-JSON](https://github.com/VILHALVA/CRUD-PYTHON-EM-JSON)
-* Tutorial: Como Fazer CRUD em JSON com Python. Disponível em: [https://projetocybernetico.blogspot.com](https://projetocybernetico.blogspot.com)
-* Diferença entre dump, dumps, load e loads em JSON. Disponível em: [https://www.dicas-de-django.com.br](https://www.dicas-de-django.com.br)
-* Lista de Exercícios: Manipulação de Arquivos JSON. Disponível em: [https://pt.scribd.com](https://pt.scribd.com)
+* PYTHON SOFTWARE FOUNDATION. **The Python Tutorial: Data Structures**. Disponivel em: [https://docs.python.org/3/tutorial/datastructures.html](https://docs.python.org/3/tutorial/datastructures.html). Acesso em: 25 jun. 2026.
+* PYTHON SOFTWARE FOUNDATION. **json - JSON encoder and decoder**. Disponivel em: [https://docs.python.org/3/library/json.html](https://docs.python.org/3/library/json.html). Acesso em: 25 jun. 2026.
+* JSON.ORG. **Introducing JSON**. Disponivel em: [https://www.json.org/json-en.html](https://www.json.org/json-en.html). Acesso em: 25 jun. 2026.
 
-## Vídeos de Apoio
+## Streamlit
 
-* Python – Manipulação de Arquivos JSON
-* Como Salvar e Carregar Listas em JSON
-* Estrutura de Dados: Dicionários no Python
-* Introdução a Sistemas de Gerenciamento
+* STREAMLIT. **Installation**. Disponivel em: [https://docs.streamlit.io/get-started/installation](https://docs.streamlit.io/get-started/installation). Acesso em: 25 jun. 2026.
+* STREAMLIT. **st.sidebar**. Disponivel em: [https://docs.streamlit.io/develop/api-reference/layout/st.sidebar](https://docs.streamlit.io/develop/api-reference/layout/st.sidebar). Acesso em: 25 jun. 2026.
+* STREAMLIT. **st.selectbox**. Disponivel em: [https://docs.streamlit.io/develop/api-reference/widgets/st.selectbox](https://docs.streamlit.io/develop/api-reference/widgets/st.selectbox). Acesso em: 25 jun. 2026.
+* STREAMLIT. **st.number_input**. Disponivel em: [https://docs.streamlit.io/develop/api-reference/widgets/st.number_input](https://docs.streamlit.io/develop/api-reference/widgets/st.number_input). Acesso em: 25 jun. 2026.
+* STREAMLIT. **st.table**. Disponivel em: [https://docs.streamlit.io/develop/api-reference/data/st.table](https://docs.streamlit.io/develop/api-reference/data/st.table). Acesso em: 25 jun. 2026.
+
+## CRUD e Inteligencia Artificial
+
+* WIKIPEDIA. **Create, read, update and delete**. Disponivel em: [https://en.wikipedia.org/wiki/Create,_read,_update_and_delete](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete). Acesso em: 25 jun. 2026.
+* OPENAI. **Codex**. Disponivel em: [https://developers.openai.com/codex](https://developers.openai.com/codex). Acesso em: 25 jun. 2026.
